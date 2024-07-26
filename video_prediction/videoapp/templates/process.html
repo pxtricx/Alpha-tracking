@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process Video</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Processing Video: {{ video.title }}</h1>
+        <p>Video is being processed. Check the server for results.</p>
+
+        {% if output %}
+            <div class="output-container">
+                <h2>Output:</h2>
+                <pre>{{ output }}</pre>
+            </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Processing Results</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        .select-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .select-container label {
+            font-weight: bold;
+        }
+        .select-container select {
+            padding: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+        .select-container select:focus {
+            border-color: #007bff;
+        }
+        .content-section {
+            display: none;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content-section.active {
+            display: block;
+        }
+        h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table thead tr {
+            background-color: #007bff;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        table tbody tr:last-of-type {
+            border-bottom: 2px solid #007bff;
+        }
+        .highlight {
+            background-color: #e7f3ff;
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+        }
+        button:hover {
+            background-color: #ff3b30;
+        }
+        button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Processing Results</h1>
+        
+        <div class="select-container">
+            <label for="data-select">Select Data to Show:</label>
+            <select id="data-select">
+                <option value="image_analysis">Image Analysis</option>
+                <option value="detection_metrics">Detection Metrics</option>
+                <option value="confusion_matrix">Confusion Matrix</option>
+                <option value="person_count">Person Count per Frame</option>
+                <option value="person_data">Person Data</option>
+                <option value="processing_time">Processing Time</option>
+            </select>
+        </div>
+
+        <a href="{% url 'upload_video' %}">
+            <button type="submit">Back</button>
+        </a>
+
+        <div id="image_analysis" class="content-section active">
+            <h2>Image Analysis</h2>
+            {{ image_analysis|safe }}
+        </div>
+
+        <div id="detection_metrics" class="content-section">
+            <h2>Detection Metrics</h2>
+            {{ detection_metrics|safe }}
+        </div>
+
+        <div id="confusion_matrix" class="content-section">
+            <h2>Confusion Matrix</h2>
+            {{ confusion_matrix|safe }}
+        </div>
+
+        <div id="person_count" class="content-section">
+            <h2>Person Count per Frame</h2>
+            {{ person_count|safe }}
+        </div>
+
+        <div id="person_data" class="content-section">
+            <h2>Person Data</h2>
+            {{ person_data|safe }}
+        </div>
+
+        <div id="processing_time" class="content-section">
+            <h2>Processing Time</h2>
+            {{ processing_time|safe }}
+        </div>
+        
+    </div>
+
+        
+
+    <script>
+        document.getElementById('data-select').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(section) {
+                if (section.id === selectedValue) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

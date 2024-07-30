@@ -1,11 +1,15 @@
 import torch
 
-print(torch.cuda.is_available())
 
-print(torch.cuda.device_count())
 
-print(torch.version.cuda)
+""" print("Torch version:", torch.__version__)
+print("Torchvision version:", torchvision.__version__)
+print("Torchaudio version:", torchaudio.__version__) """
 
+print("CUDA available:", torch.cuda.is_available())
+print("CUDA version:", torch.version.cuda)
+
+print("cuDNN Version:", torch.backends.cudnn.version())
 '''
 
         # บันทึกรูปภาพแต่ละ object # เขียนเพิ่ม

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+    <h2>Metrics</h2>
+    {{ metrics_df|safe }}
+
+    <h2>Confusion Matrix</h2>
+    {{ cm_df|safe }}
+
+    <h2>Person Count per Frame</h2>
+    {{ person_count_df|safe }}
+
+    <h2>Processing Time</h2>
+    {{ time_df|safe }}
+
+    <h2>Image Analysis</h2>
+    {{ df_images|safe }}
+
+    <h2>Download Results</h2>
+    <a href="{{ excel_path }}">Download Excel</a>
+    <br>
+    <img src="{{ plot_path }}" alt="Person Count Plot">
+</body>
+</html>
